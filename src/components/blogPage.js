@@ -28,7 +28,7 @@ class blogPage extends Component {
             blog: nextProps.blogs[this.props.match.params.blogId]
         });
     }
-    saveBlog({username, content}){        
+    addComment({username, content}){        
         this.props.addComment(this.props.match.params.blogId, username, content);
         this.setState({
             created: true
@@ -49,7 +49,7 @@ class blogPage extends Component {
                             content={this.state.blog.content} comments={this.state.blog.comments}/>
                         <Divider />              
                         <br/>
-                        <CreateComment saveBlog={this.saveBlog.bind(this)}/>
+                        <CreateComment addComment={this.addComment.bind(this)}/>
                         <Snackbar
                             open={this.state.created}
                             message="Comment added!!!"

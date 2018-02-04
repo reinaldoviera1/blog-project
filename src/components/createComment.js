@@ -10,7 +10,7 @@ const initial = {
 
 export default class commetForm extends Component {
     static propTypes = {
-        saveBlog: PropTypes.func
+        addComment: PropTypes.func
     }
     constructor(){
         super();
@@ -36,7 +36,7 @@ export default class commetForm extends Component {
         this.setState(initial);
     }
     onSave(){
-        this.props.saveBlog(this.state);
+        this.props.addComment(this.state);
         this.setInitialState();
     }
     render() {
