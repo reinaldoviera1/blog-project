@@ -65,7 +65,7 @@ export default class commetForm extends Component {
                 />
                 </CardText>
                 <CardActions>
-                <FlatButton label="Comment" onClick={this.onSave.bind(this)}/>
+                <FlatButton label="Comment" onClick={this.onSave.bind(this)} primary={true}/>
                 </CardActions>
             </Card>
         );

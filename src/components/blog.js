@@ -35,7 +35,7 @@ export default class blog extends Component {
             <CardActions>
                 {
                     this.props.idBlog && <Link to={`/blog/${this.props.idBlog}`}>
-                                            <FlatButton label="SEE" />
+                                            <FlatButton label="SEE" primary={true}/>
                                         </Link>
                 }
             

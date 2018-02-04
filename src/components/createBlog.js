@@ -86,7 +86,7 @@ export default class CreateBlog extends Component {
           />
         </CardText>
         <CardActions>
-          <FlatButton label="Save" onClick={this.onSave.bind(this)}/>
+          <FlatButton label="Save" onClick={this.onSave.bind(this)} primary={true}/>
         </CardActions>
       </Card>
     );
