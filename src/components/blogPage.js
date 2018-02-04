@@ -56,7 +56,8 @@ class blogPage extends Component {
                             autoHideDuration={4000}
                             onRequestClose={this.handleRequestClose.bind(this)}
                             />
-                        <Divider />              
+                        <Divider />  
+                        <h2>Comments: </h2>            
                         <br/>
                         {
                             this.state.blog.comments.map(
