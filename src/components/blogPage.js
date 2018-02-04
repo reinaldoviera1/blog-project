@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addComment } from "../actions/blogs";
 import Divider from 'material-ui/Divider';
-
+import Snackbar from 'material-ui/Snackbar';
 
 
 class blogPage extends Component {    
@@ -19,7 +19,8 @@ class blogPage extends Component {
     constructor(props){
         super(props);
         this.state = {
-            blog: props.blogs[props.match.params.blogId]
+            blog: props.blogs[props.match.params.blogId],
+            created: false
         };
     }
     componentWillReceiveProps(nextProps){
@@ -27,9 +28,17 @@ class blogPage extends Component {
             blog: nextProps.blogs[this.props.match.params.blogId]
         });
     }
-    saveBlog({username, content}){
+    saveBlog({username, content}){        
         this.props.addComment(this.props.match.params.blogId, username, content);
-    }    
+        this.setState({
+            created: true
+        });
+    }
+    handleRequestClose(){
+        this.setState({
+            created: false,
+          });
+    }
     render() {
         return (            
                 !this.state.blog ? <span> No blog exist with the "{this.props.match.params.blogId}" id</span> :
@@ -41,6 +50,12 @@ class blogPage extends Component {
                         <Divider />              
                         <br/>
                         <CreateComment saveBlog={this.saveBlog.bind(this)}/>
+                        <Snackbar
+                            open={this.state.created}
+                            message="Comment added!!!"
+                            autoHideDuration={4000}
+                            onRequestClose={this.handleRequestClose.bind(this)}
+                            />
                         <Divider />              
                         <br/>
                         {

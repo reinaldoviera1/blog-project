@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import Divider from 'material-ui/Divider';
 import { connect } from 'react-redux';
 import { createEntry } from "../actions/blogs";
+import Snackbar from 'material-ui/Snackbar';
+
 
 export class Blogs extends Component {
     static propTypes = {
@@ -13,12 +15,32 @@ export class Blogs extends Component {
     } 
     constructor(props){
         super(props);
+        this.state = {
+            created: false
+        };
+    }
+    handleRequestClose(){
+        this.setState({
+            created: false,
+          });
+    }
+    saveBlog(blog){        
+        this.props.saveBlog(blog);
+        this.setState({
+            created: true
+        });
     }
     render() {
         return (
             <div>
-                <CreateBlog saveBlog={this.props.saveBlog}/> 
-                <Divider />              
+                <CreateBlog saveBlog={this.saveBlog.bind(this)}/> 
+                <Divider />       
+                <Snackbar
+                    open={this.state.created}
+                    message="Blog entry created!!!"
+                    autoHideDuration={4000}
+                    onRequestClose={this.handleRequestClose.bind(this)}
+                    />       
                 <br/>
                 <h2>Recents blogs entries:</h2> 
                 <br/>                              
